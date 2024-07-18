@@ -1,13 +1,16 @@
 import os
 
 from groq import Groq
+from bs4 import BeautifulSoup
 
 os.environ['GROQ_API_KEY'] = "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"
 client = Groq(
     api_key=os.environ.get("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"),
 )
 
-chat_completion = client.chat.completions.create(
+html_content = "<your_html_content_here>"  # replace with your HTML content
+soup = BeautifulSoup(html_content, 'html.parser')
+text = soup.get_text()
     messages=[
         {
             "role": "user",
@@ -18,6 +21,6 @@ chat_completion = client.chat.completions.create(
 )
 
 try:
-    print(chat_completion.choices[0].message.content)
+    print(text)
 except Exception as e:
     print(f"Error: {e}")
