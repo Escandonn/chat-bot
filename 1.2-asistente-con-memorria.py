@@ -1,6 +1,10 @@
 import os
 from groq import Groq
-from langchain.chains import LLMChain
+try:
+    from langchain.chains import LLMChain
+except ImportError:
+    print("Error: langchain module not found. Please install it using pip install langchain")
+    exit(1)
 from langchain_core.prompts import (
     ChatPromptTemplate,
     HumanMessagePromptTemplate,
