@@ -1,4 +1,8 @@
+import os
+import requests
+
 def main():
+    api_key = os.environ['GROQ_API_KEY']
     print("Groq Quickstart Conversational Chatbot")
     print("A simple application that allows users to interact with a conversational chatbot powered by Groq.")
     print("This application is designed to get users up and running quickly with building a chatbot.")
@@ -12,4 +16,9 @@ def main():
     print("You will need to store a valid Groq API Key as a secret to proceed with this example.")
     print("You can generate one for free here.")
     print("You can fork and run this application on Replit or run it on the command line with python main.py.")
+    
+    while True:
+        user_input = input("You: ")
+        response = requests.post(f"https://api.groq.com/v1/llama/{api_key}", json={"prompt": user_input}).json()
+        print(f"Chatbot: {response['response']}")
     input("Press Enter to exit...")
