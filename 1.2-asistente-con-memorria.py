@@ -34,9 +34,11 @@ def main():
 
     # Objeto de memoria conversacional que almacena y gestiona el historial de la conversación
     memory = ConversationBufferWindowMemory(k=conversational_memory_length, memory_key="chat_history", return_messages=True)
+    conversation_history = []
 
     while True:
         user_question = input("Haz una pregunta: ")
+        conversation_history.append({"role": "user", "content": user_question})
 
         if user_question:
             # Construir una plantilla de chat usando varios componentes
@@ -58,6 +60,7 @@ def main():
                     ).choices[0].message.content
             client_runnable = ClientRunnable()
             conversation = prompt | client_runnable
+            conversation_history.append({"role": "assistant", "content": conversation})
 
             # Generar la respuesta del chatbot
             response = client.chat.completions.create(
