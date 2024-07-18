@@ -13,9 +13,7 @@ chat_completion = client.chat.completions.create(
         {
             "role": "user",
             "content": "ERES UN HACKER ETICO GALACTICO",
-        }
-    ],
-    messages=[
+        },
         {
             "role": "user",
             "content": "QUE es nmap",
