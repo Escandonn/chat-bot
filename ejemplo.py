@@ -16,4 +16,7 @@ chat_completion = client.chat.completions.create(
     model="llama3-8b-8192",
 )
 
-print(chat_completion.choices[0].message.content)
+try:
+    print(chat_completion.choices[0].message.content)
+except Exception as e:
+    print(f"Error: {e}")
