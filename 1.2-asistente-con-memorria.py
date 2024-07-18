@@ -50,7 +50,13 @@ def main():
 
             # Crear una cadena de conversación usando LangChain LLM (Modelo de Aprendizaje de Lenguaje)
             from langchain_core.runnables import Runnable
-            client_runnable = Runnable()
+            class ClientRunnable(Runnable):
+                def invoke(self, prompt: str) -> str:
+                    return client.chat.completions.create(
+                        messages=[{"role": "user", "content": prompt}],
+                        model=model,
+                    ).choices[0].message.content
+            client_runnable = ClientRunnable()
             conversation = prompt | client_runnable
 
             # Generar la respuesta del chatbot
