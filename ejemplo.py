@@ -13,12 +13,16 @@ client = Groq(
 )
 # Crear un cliente Groq con la clave de API establecida
 
-html_content = "<your_html_content_here>"  # reemplazar con su contenido HTML
-# Contenido HTML que se va a parsear
-soup = BeautifulSoup(html_content, 'html.parser')
-# Parsear el contenido HTML con BeautifulSoup
-text = soup.get_text()
-# Extraer el texto del contenido HTML parseado
+chat_completion = client.chat.completions.create(
+    messages=[
+        {
+            "role": "user",
+            "content": "Explain the importance of fast language models",
+        }
+    ],
+    model="llama3-8b-8192",
+)
+text = chat_completion.choices[0].message.content
 
 try:
     print(text)
