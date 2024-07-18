@@ -22,7 +22,7 @@ chat_completion = client.chat.completions.create(
     ],
     model="llama3-8b-8192",
 )
-text = chat_completion.choices[0].message.content
+text = chat_completion.choices[0].message.content.strip()
 
 try:
     print(text)
