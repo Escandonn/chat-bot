@@ -1,5 +1,4 @@
 import os
-import os.environ
 
 from groq import Groq
 
