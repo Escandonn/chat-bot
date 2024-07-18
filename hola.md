@@ -1,1 +1,1 @@
-printf(hola)
+print("hola")
