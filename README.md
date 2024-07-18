@@ -1,95 +1,47 @@
-# Groq Quickstart Conversational Chatbot Tutorial
-=====================================================
+# Chatbot Conversacional con Groq y LangChain
 
-This tutorial will guide you through creating a simple conversational chatbot powered by Groq.
+## Descripción
 
-## Prerequisites
-----------------
+Esta aplicación es un chatbot conversacional impulsado por LangChain y la API de Groq. Permite a los usuarios interactuar con el chatbot, que puede responder preguntas, proporcionar información o simplemente charlar. El chatbot mantiene un historial de la conversación para proporcionar contexto en sus respuestas.
 
-* A valid Groq API Key (you can generate one for free [here](https://groq.com/))
-* Python installed on your system
-* The `groq` library installed (you can install it using `pip install groq`)
+## Requisitos
 
-## Setting up the Environment
------------------------------
+- Python 3.x
+- Una clave API de Groq
 
-### 1. Set up your Groq API Key
+## Instalación
 
-Create a new file `memorias.py` and add the following code:
-```python
-import os
-from groq import Groq
+1. Clona este repositorio:
+    ```sh
+    git clone <URL_DEL_REPOSITORIO>
+    cd <NOMBRE_DEL_DIRECTORIO>
+    ```
 
-def set_environment(api_key):
-    os.environ['GROQ_API_KEY'] = api_key
+2. Instala las dependencias necesarias:
+    ```sh
+    pip install groq langchain
+    ```
 
-# Replace with your own API Key
-api_key = "YOUR_API_KEY"
-set_environment(api_key)
-```
-### 2. Create a Groq Client
+3. Configura tu clave de API de Groq en el código:
+    ```python
+    os.environ['GROQ_API_KEY'] = "TU_CLAVE_API_DE_GROQ"
+    ```
 
-Add the following code to `memorias.py`:
-```python
-def create_groq_client():
-    api_key = os.environ.get("GROQ_API_KEY")
-    if not api_key:
-        raise ValueError("GROQ_API_KEY not set in the environment.")
-    return Groq(api_key=api_key)
+## Uso
 
-client = create_groq_client()
-```
-## Creating the Chatbot
----------------------
+1. Ejecuta el script principal:
+    ```sh
+    python main.py
+    ```
 
-### 1. Define the Conversation
+2. Ingresa tus preguntas cuando se te solicite y el chatbot responderá.
 
-Create a new file `new_file.py` and add the following code:
-```python
-import os
-from groq import Groq
+## Estructura del Código
 
-# Initialize the conversation
-conversation = []
+- `main()`: La función principal que configura el cliente de Groq, la interfaz y maneja la interacción del chat.
+- `system_prompt`: Define el comportamiento del chatbot.
+- `ConversationBufferWindowMemory`: Objeto de memoria que almacena y gestiona el historial de la conversación.
+- `ChatPromptTemplate`: Construye una plantilla de chat utilizando varios componentes.
 
-while True:
-    user_input = input("User: ")
-    print(user_input)
-    if user_input == "cero":
-        break
-    
-    # Save the user's question to the conversation
-    conversation.append(f"User: {user_input}")
 
-    # Send the question to the Groq model
-    chat_completion = client.chat.completions.create(
-        messages=[
-            {
-                "role": "user",
-                "content": user_input,
-            }
-        ],
-        model="llama3-8b-8192",
-    )
 
-    # Get and save the assistant's response
-    assistant_response = chat_completion.choices[0].message.content.strip()
-    conversation.append(f"Assistant: {assistant_response}")
-
-    # Print the assistant's response
-    print(f"Assistant: {assistant_response}")
-
-# Print the entire conversation when exiting the loop
-print("\n--- Conversation Complete ---")
-for utterance in conversation:
-    print(utterance)
-```
-### 2. Run the Chatbot
-
-Run the chatbot using `python new_file.py`. You can interact with the chatbot by inputting text, and it will respond accordingly.
-
-## Conclusion
-----------
-
-Congratulations! You have successfully created a simple conversational chatbot powered by Groq. You can now experiment with different models and fine-tune the chatbot to suit your needs.
-# chat-bot
