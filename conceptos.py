@@ -2,7 +2,7 @@ import os
 from groq import Groq
 
 # Set the GROQ_API_KEY in the secrets
-client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
+client = Groq(api_key=os.environ.get("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"))
 
 # Set the system prompt
 system_prompt = {
