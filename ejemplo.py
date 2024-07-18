@@ -11,14 +11,6 @@ client = Groq(
 html_content = "<your_html_content_here>"  # replace with your HTML content
 soup = BeautifulSoup(html_content, 'html.parser')
 text = soup.get_text()
-    messages=[
-        {
-            "role": "user",
-            "content": "Explain the importance of fast language models",
-        }
-    ],
-    model="llama3-8b-8192",
-)
 
 try:
     print(text)
