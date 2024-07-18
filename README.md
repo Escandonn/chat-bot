@@ -92,3 +92,4 @@ Run the chatbot using `python new_file.py`. You can interact with the chatbot by
 ----------
 
 Congratulations! You have successfully created a simple conversational chatbot powered by Groq. You can now experiment with different models and fine-tune the chatbot to suit your needs.
+# chat-bot
