@@ -13,7 +13,7 @@ conversation = []
 while True:
     user_input = input("User: ")
     print(user_input)
-    if "user_input" == "cero":
+    if user_input == "cero":
         break
     
     # Guardar la pregunta del usuario en la conversación
