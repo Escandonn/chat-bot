@@ -49,12 +49,7 @@ def main():
             )
 
             # Crear una cadena de conversación usando LangChain LLM (Modelo de Aprendizaje de Lenguaje)
-            conversation = LLMChain(
-                llm=client,  # El cliente de Groq inicializado anteriormente
-                prompt=prompt,  # La plantilla de prompt construida
-                verbose=False,  # Salida detallada, útil para depuración
-                memory=memory,  # Objeto de memoria conversacional que almacena y gestiona el historial de la conversación
-            )
+            conversation = prompt | client
 
             # Generar la respuesta del chatbot
             response = client.chat.completions.create(
