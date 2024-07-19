@@ -2,7 +2,7 @@ import os
 from groq import Groq
 
 # Establecer la clave de API de Groq como variable de entorno
-os.environ['GROQ_API_KEY'] = "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"
+os.environ['GROQ_API_KEY'] = ""
 
 # Crear un cliente Groq con la clave de API establecida
 client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
